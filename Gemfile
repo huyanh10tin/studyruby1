@@ -6,6 +6,7 @@ git_source(:github) do |repo_name|
 end
 gem 'bcrypt', '~> 3.1.7'
 gem 'bootstrap-sass', '3.2.0.2'
+gem 'jquery-rails'
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '~> 5.1.1'
 # Use sqlite3 as the database for Active Record
