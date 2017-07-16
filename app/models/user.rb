@@ -1,5 +1,5 @@
 class User < ApplicationRecord
-  attr_accessor :remember_token, :activation_token
+  attr_accessor :remember_token, :activation_token,:reset_token
   before_create :create_activation_digest
   before_save :downcase_email
   VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
@@ -29,7 +29,8 @@ class User < ApplicationRecord
     update_attribute(:remember_digest, User.digest(remember_token))
   end
 
-  def authenticated?(attribute,token)
+  #check if the token pass in has hash the same like the attribute activation_digest
+  def authenticated?(attribute, token)
     digest = self.send("#{attribute}_digest")
     return false if digest.nil?
     BCrypt::Password.new(digest).is_password?(token)
@@ -38,14 +39,31 @@ class User < ApplicationRecord
   def forget
     update_attribute(:remember_digest, nil)
   end
+
   # Activates an account.
   def activate
-    update_attribute(:activated,    true)
+    update_attribute(:activated, true)
     update_attribute(:activated_at, Time.zone.now)
   end
+
   def send_activation_email
     UserMailer.account_activation(self).deliver_now
   end
+  # create reset token
+  def create_reset_digest
+    self.reset_token = User.new_token
+    update_attribute(:reset_digest,User.digest(self.reset_token))
+    update_attribute(:reset_sent_at,Time.zone.now)
+  end
+  #send reset email
+  def send_password_reset_email
+    UserMailer.password_reset(self).deliver_now
+  end
+  def password_reset_expired?
+    reset_sent_at < 2.hours.ago
+  end
+
+
   private
   def downcase_email
     self.email = email.downcase

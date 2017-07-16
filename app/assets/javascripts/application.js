@@ -15,3 +15,8 @@
 //= require_tree .
 //= require jquery
 //= require jquery_ujs
+$('document').ready(function() {
+    setTimeout(function() {
+        $('.alert').hide();
+    }, 3000);
+});
