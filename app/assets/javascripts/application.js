@@ -20,3 +20,8 @@ $('document').ready(function() {
         $('.alert').hide();
     }, 3000);
 });
+if (performance.navigation.type == 1) {
+    console.info( "This page is reloaded" );
+} else {
+    console.info( "This page is not reloaded");
+}
