@@ -19,6 +19,7 @@ $('document').ready(function() {
     setTimeout(function() {
         $('.alert').hide();
     }, 3000);
+
 });
 if (performance.navigation.type == 1) {
     console.info( "This page is reloaded" );
