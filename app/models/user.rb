@@ -1,11 +1,12 @@
 class User < ApplicationRecord
   has_many :microposts, dependent: :destroy
-  has_many :activate_relationships,class_name: "Relationship",
+  has_many :active_relationships,class_name: "Relationship",
            foreign_key: "follower_id",
            dependent: :destroy
   has_many :passive_relationships,class_name: "Relationship",
-           foreign_key: "followed_id"
-  has_many :following,through: :activate_relationships,source: :followed
+           foreign_key: "followed_id",
+           dependent: :destroy
+  has_many :following,through: :active_relationships,source: :followed
   has_many :followers,through: :passive_relationships,source: :follower
   attr_accessor :remember_token, :activation_token,:reset_token
   before_create :create_activation_digest
@@ -47,7 +48,12 @@ class User < ApplicationRecord
   def forget
     update_attribute(:remember_digest, nil)
   end
-
+  # Returns a user's status feed.
+  def feed
+    following_ids = "SELECT followed_id FROM relationships
+                     WHERE  follower_id = :user_id"
+    Micropost.where("user_id IN (#{following_ids}) OR user_id = :user_id",user_id: id)
+  end
   # Activates an account.
   def activate
     update_attribute(:activated, true)
@@ -72,7 +78,7 @@ class User < ApplicationRecord
   end
   #follow
   def follow other_user
-    following << other_user
+    active_relationships.create(followed_id: other_user.id)
   end
   #unfollow
   def unfollow other_user
@@ -83,9 +89,9 @@ class User < ApplicationRecord
   end
   # Defines a proto-feed.
   # See "Following users" for the full implementation.
-  def feed
-    Micropost.where("user_id = ?",id)
-  end
+  # def feed
+  #   Micropost.where("user_id = ?",id)
+  # end
   private
   def downcase_email
     self.email = email.downcase
