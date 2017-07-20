@@ -4,6 +4,14 @@ $light-gray: #777;
 $gray: #555;
 $gray-darker: #222;
 $gray-medium-light: #eaeaea;
+
+body {
+  height: 100%;
+  /*background = gradient + image pattern combo*/
+  background:
+          linear-gradient(rgba(196, 102, 0, 0.2), rgba(155, 89, 182, 0.2)),
+          url('http://thecodeplayer.com/uploads/media/gs.png');
+}
 body{
   padding-top: 60px;
 }
