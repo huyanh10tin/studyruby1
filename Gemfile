@@ -5,8 +5,12 @@ git_source(:github) do |repo_name|
   "https://github.com/#{repo_name}.git"
 end
 gem 'bcrypt', '~> 3.1.7'
+gem 'bootstrap'
 gem 'bootstrap-sass', '3.2.0.2'
-
+gem 'kaminari'
+gem 'ransack'
+gem 'sprockets-rails'
+gem 'bootstrap-kaminari-views'
 gem 'jquery-rails'
 gem 'private_pub'
 gem 'thin'

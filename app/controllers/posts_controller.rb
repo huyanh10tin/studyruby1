@@ -3,7 +3,7 @@ class PostsController < ApplicationController
 	before_action :logged_in_user, only: [:create, :destroy,:new]
 	before_action :owned_post, only: [:edit, :update, :destroy]
 	def index
-		@posts = Post.all
+		@posts = Post.all.order('created_at DESC').paginate(page: params[:page])
 	end
 	def new
 		@post = current_user.posts.build

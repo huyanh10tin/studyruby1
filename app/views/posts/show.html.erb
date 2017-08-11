@@ -1,12 +1,14 @@
 <%= render 'post', post: @post %>
 <% if @post.user.id == current_user.id %>
     <div class="text-center edit-links">
-      <%= link_to "Cancel", posts_path %>
+      <%= link_to "Cancel", posts_path %> <span class="glyphicon glyphicon-arrow-left"></span>
       |
-      <%= link_to "Edit Post", edit_post_path(@post) %>
+      <%= link_to "Edit Post ", edit_post_path(@post) %><span class="glyphicon glyphicon-pencil"></span>
+      |
+      <%= link_to "Delete Post", post_path(@post),method: :delete,method: :delete, data: { confirm: "Are you sure you want to delete this post?" } %><span class="glyphicon glyphicon-trash"></span>
     </div>
 <% else %>
     <div class="text-center edit-links">
-      <%= link_to "Cancel", posts_path %>
+      <%= link_to "Cancel", posts_path %><span class="glyphicon glyphicon-arrow-left"></span>
     </div>
 <% end %>

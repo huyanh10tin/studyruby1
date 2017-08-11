@@ -21,7 +21,9 @@
       <div id="comments_<%= post.id%>">
         <% if post.comments %>
             <% post.comments.each do |comment| %>
-                <%= render comment,post: post%>
+
+                      <%= render comment,post: post%>
+
             <% end %>
         <% end %>
       </div>

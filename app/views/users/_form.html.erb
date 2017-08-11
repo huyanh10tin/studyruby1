@@ -1,17 +1,39 @@
-<%= form_for(@user) do |f| %>
-    <%= render 'shared/error_messages', object: f.object %>
 
-    <%= f.label :name %>
-    <%= f.text_field :name, class: 'form-control' %>
+<!--<%= simple_form_for(@user) do |f| %>-->
+    <!--<%= render 'shared/error_messages', object: f.object %>-->
 
-    <%= f.label :email %>
-    <%= f.email_field :email, class: 'form-control' %>
+    <!--<div class="form-inputs">-->
+      <!--<%= f.input :email, required: true, autofocus: true %>-->
+      <!--<%= f.input :name, required: true %>-->
+      <!--<%= f.input :password, required: true, hint: ("#{@minimum_password_length} characters minimum" if @minimum_password_length) %>-->
+      <!--<%= f.input :password_confirmation, required: true %>-->
+    <!--</div>-->
+    <!--<div class="form-actions">-->
+      <!--<%= f.button :submit, "Sign up" %>-->
+    <!--</div>-->
+<!--<% end %>-->
 
-    <%= f.label :password %>
-    <%= f.password_field :password, class: 'form-control' %>
+<div class="registration-bg">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-4 col-md-offset-4">
+        <div class="log-in panel">
+          <div class="panel-heading">
+            <h2>Create Your Account</h2>
+          </div>
+          <%= simple_form_for(@user) do |f| %>
+              <%= f.error_notification %>
+              <div class="panel-body">
+                <%= f.input :email, required: true, autofocus: true, label: false, placeholder: 'Email', input_html: { class: 'input-lg' } %>
+                <%= f.input :name, required: true, label: false, placeholder: 'User Name', input_html: { class: 'input-lg' } %>
+                <%= f.input :password, required: true, label: false, placeholder: 'Password', input_html: { class: 'input-lg' } %>
+                <%= f.input :password_confirmation, required: true, label: false, placeholder: 'Confirm Password', input_html: { class: 'input-lg' } %>
+                <%= f.button :submit, "Sign up", class: 'btn-lg btn-info btn-block' %>
+              </div>
+          <% end %>
 
-    <%= f.label :password_confirmation %>
-    <%= f.password_field :password_confirmation, class: 'form-control' %>
-
-    <%= f.submit yield(:button_text), class: "btn btn-primary" %>
-<% end %>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -11,8 +11,7 @@
 // about supported directives.
 //
 //= require jquery
-
-
+//= require bootstrap-sprockets
 //= require rails-ujs
 //= require turbolinks
 //= require_tree .
@@ -23,16 +22,21 @@ $('document').ready(function() {
         $('.alert').hide();
     }, 3000);
 
-    var preview = $(".upload-preview img");
 
-    $(".file").change(function(event){
-        var input = $(event.currentTarget);
-        var file = input[0].files[0];
-        var reader = new FileReader();
-        reader.onload = function(e){
-            image_base64 = e.target.result;
-            preview.attr("src", image_base64);
-        };
-        reader.readAsDataURL(file);
-    });
 });
+// var preview = $(".upload-preview img");
+//
+// $(".file").change(function(event){
+//     var input = $(event.currentTarget);
+//     var file = input[0].files[0];
+//     var reader = new FileReader();
+//     reader.onload = function(e){
+//         image_base64 = e.target.result;
+//         preview.attr("src", image_base64);
+//     };
+//     reader.readAsDataURL(file);
+// });
+var loadFile = function(event) {
+    var output = document.getElementById('image-preview');
+    output.src = URL.createObjectURL(event.target.files[0]);
+};
