@@ -6,7 +6,10 @@ git_source(:github) do |repo_name|
 end
 gem 'bcrypt', '~> 3.1.7'
 gem 'bootstrap-sass', '3.2.0.2'
+
 gem 'jquery-rails'
+gem 'private_pub'
+gem 'thin'
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '~> 5.1.1'
 gem 'faker',          '1.7.3'
@@ -15,6 +18,10 @@ gem 'bootstrap-will_paginate', '1.0.0'
 gem 'carrierwave',             '1.1.0'
 gem 'mini_magick',             '4.7.0'
 gem 'fog',                     '1.40.0'
+gem 'omniauth'
+gem 'omniauth-google-oauth2'
+gem "paperclip", "~> 5.0.0"
+gem 'simple_form'
 # Use sqlite3 as the database for Active Record
 group :development do
   gem 'sqlite3'

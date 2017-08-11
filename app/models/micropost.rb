@@ -11,5 +11,9 @@ class Micropost < ApplicationRecord
       errors.add(:picture,"You file should less than 5 MB")
     end
   end
-
+  rails_admin do
+    configure :user do
+      label 'Owner of this ball: '
+    end
+  end
 end
