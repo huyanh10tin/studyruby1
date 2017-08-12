@@ -1,2 +1,7 @@
+
 $('#comments_<%= @post.id %>').append("<%=j render 'comments/comment', post: @post, comment: @comment %>");
-$('#comment_content_<%= @post.id %>').val('')
+$('#comment_content_<%= @post.id %>').val('');
+
+var x = <%= @post.comments.count%>;
+
+$('#comments-paginator-<%= @post.id %> a').text("view all "+x+" comments");

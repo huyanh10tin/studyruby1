@@ -1,4 +1,5 @@
 class Post < ApplicationRecord
+	paginates_per 2
 	has_many :comments, dependent: :destroy
 	belongs_to :user
 	validates :image,presence: true

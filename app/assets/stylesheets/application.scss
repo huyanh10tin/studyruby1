@@ -20,3 +20,11 @@
 //img:empty {
 //  visibility: hidden;
 //}
+.comments {
+  .paginator {
+    margin: 0.5em;
+    .more-comments {
+      color: #A5A7AA;
+    }
+  }
+}

@@ -12,8 +12,10 @@
 //
 //= require jquery
 //= require bootstrap-sprockets
+//= require loadMoreComments
 //= require rails-ujs
 //= require turbolinks
+//= require jquery.turbolinks
 //= require_tree .
 
 

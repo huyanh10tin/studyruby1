@@ -1,12 +1,11 @@
 <h1>Instagram</h1>
 
 <div class="posts-wrapper row">
-
-  <% @posts.each do |post| %>
-      <%= render 'post', post: post %>
-  <% end %>
-  <%= paginate @posts%>
-
+  <div id="posts">
+    <%= render 'posts' %>
+  </div>
+  <div class="text-center" id="paginator">
+    <%= link_to_next_page @posts, 'LOAD MORE',data: {disable_with:"<i class='fa fa-refresh fa-spin fa-3x fa-fw' aria-hidden='true'></i> <span class='sr-only'>Refreshing...</span>"}, remote: true, id: 'load_more' %>
+  </div>
 </div>
-
 
