@@ -1,11 +1,12 @@
 class CommentsController < ApplicationController
   before_action :set_post
   def index
-    @comments = @post.comments.order("created_at ASC")
+    @comments = @post.comments.order("created_at DESC")
 
     respond_to do |format|
-
-      format.html { render :layout => !request.xhr? }
+      format.html
+      format.js
+      # format.html { render :layout => !request.xhr? }
 
     end
   end
