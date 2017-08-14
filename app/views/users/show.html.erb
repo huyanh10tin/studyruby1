@@ -10,11 +10,16 @@
     <section class="stats">
       <%= render "shared/stats"%>
     </section>
+    <h1>Post Instagram</h1>
+    <section class="posts">
+      <%= render @posts if @posts%>
+    </section>
   </aside>
+
   <div class="col-md-8">
     <%= render 'follow_form' if logged_in?%>
     <% if @user.microposts.any? %>
-      <h3>Microposts (<%= @user.microposts.count %>)</h3>
+      <h3>Status (<%= @user.microposts.count %>)</h3>
         <ol class="microposts">
           <%= render @microposts %>
 

@@ -14,7 +14,7 @@
     <div class="post-bottom">
       <div class="caption">
         <div class="user-name">
-          <%= post.user.name %>
+          <%= link_to post.user.name,user_path(post.user)%>
         </div>
         <span class="label label-info">caption:</span><span style="color: black"><%= post.caption %></span>
       </div>
@@ -31,10 +31,10 @@
 
     </div>
     <div class="comment-like-form row">
-      <div class="like-button col-sm-1">
+      <div class="like-button col-sm-1 col-xs-1">
         <span class="glyphicon glyphicon-heart-empty"></span>
       </div>
-      <div class="comment-form col-sm-11">
+      <div class="comment-form col-sm-11 col-xs-11">
         <%= form_for([post, post.comments.build], remote: true) do |f| %>
             <%= f.text_field :content, placeholder: 'Add a comment...',class: "form-control comment_content", id: "comment_content_#{post.id}"%>
         <% end %>

@@ -1,6 +1,9 @@
 Rails.application.routes.draw do
+
+
   mount RailsAdmin::Engine => '/admin', as: 'rails_admin'
   devise_for :users
+  # get ':username', to: 'profiles#show', as: :profile
 
   get 'password_resets/new'
 

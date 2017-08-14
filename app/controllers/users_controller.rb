@@ -20,6 +20,7 @@ class UsersController < ApplicationController
 
   def show
     @user = User.find(params[:id])
+    @posts = @user.posts.order('created_at DESC')
     redirect_to root_url and return unless @user.activated?
     @microposts = @user.microposts.paginate(page: params[:page])
   end
@@ -68,7 +69,7 @@ class UsersController < ApplicationController
 
   private
   def user_params
-    params.require(:user).permit(:name, :email, :password, :password_confirmation)
+    params.require(:user).permit(:name, :email, :password,:username, :password_confirmation)
   end
 
   def logged_in_user

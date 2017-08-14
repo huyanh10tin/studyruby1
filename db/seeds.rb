@@ -7,6 +7,7 @@
 #   Character.create(name: 'Luke', movie: movies.first)
 User.create!(name:  "Example User",
              email: "example@gmail.com",
+             username:"admin",
              password:              "123456",
              password_confirmation: "123456",
              admin:     true,
@@ -15,9 +16,11 @@ User.create!(name:  "Example User",
 
 50.times do |n|
   name  = Faker::Name.name
+  username = "example#{n+1}"
   email = "example#{n+1}@gmail.com"
   password = "123456"
   User.create!(name:  name,
+               username: username,
                email: email,
                password:              password,
                password_confirmation: password,
