@@ -1,5 +1,6 @@
 class CommentsController < ApplicationController
   before_action :set_post
+  before_action :logged_in_user
   def index
     @comments = @post.comments.order("created_at DESC")
 
@@ -15,6 +16,9 @@ class CommentsController < ApplicationController
     @comment.user_id = current_user.id
 
     if @comment.save
+      (@post.users.uniq - [current_user]).each do |user|
+        Notification.create(recipient:user,actor:current_user,action:"commented",notifiable: @comment)
+      end
       respond_to do |format|
         format.html { redirect_to posts_path }
         format.js

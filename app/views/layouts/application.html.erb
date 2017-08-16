@@ -21,8 +21,12 @@
 
   </head>
 
-
-  <body>
+  <% if controller.controller_name == "post" %>
+    <body class="body_change">
+  <% else %>
+      <body>
+  <% end %>
+<body>
     <%= render('layouts/header')%>
 
     <div class="container">

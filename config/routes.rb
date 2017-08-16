@@ -4,7 +4,9 @@ Rails.application.routes.draw do
   mount RailsAdmin::Engine => '/admin', as: 'rails_admin'
   devise_for :users
   # get ':username', to: 'profiles#show', as: :profile
-
+  get '/profiles/:username',to:'profiles#show',as: :profile
+  get '/profiles/:username/edit',to:'profiles#edit',as: :profile_edit
+  patch '/profiles/:username/edit', to: 'profiles#update', as: :profile_update
   get 'password_resets/new'
 
   get 'password_resets/edit'
@@ -24,13 +26,23 @@ Rails.application.routes.draw do
       get :following, :followers
     end
   end
-
+  resources :notifications do
+    collection do
+      post :mark_as_read
+    end
+  end
   resources :account_activations, only: [:edit]
   resources :password_resets,only: [:new,:create,:edit,:update]
   resources :microposts,only: [:create,:destroy]
   resources :relationships, only: [:create, :destroy]
   resources :posts do
     resources :comments
+    member do
+      get 'like'
+    end
+    member do
+      get 'unlike'
+    end
   end
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end

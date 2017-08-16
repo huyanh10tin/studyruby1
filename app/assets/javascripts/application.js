@@ -11,9 +11,12 @@
 // about supported directives.
 //
 //= require jquery
+//= require jquery.atwho
 //= require bootstrap-sprockets
 //= require loadMoreComments
+//= require posts.coffee
 //= require rails-ujs
+//= require notifications.js
 //= require turbolinks
 //= require jquery.turbolinks
 //= require_tree .
@@ -38,6 +41,7 @@ $('document').ready(function() {
 //     };
 //     reader.readAsDataURL(file);
 // });
+
 var loadFile = function(event) {
     var output = document.getElementById('image-preview');
     output.src = URL.createObjectURL(event.target.files[0]);

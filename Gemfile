@@ -15,6 +15,7 @@ gem 'sprockets', '~> 3.0'
 gem 'jquery-rails'
 gem 'private_pub'
 gem 'thin'
+gem 'jquery-atwho-rails'
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '~> 5.1.1'
 gem 'faker',          '1.7.3'
@@ -27,6 +28,7 @@ gem 'omniauth'
 gem 'omniauth-google-oauth2'
 gem "paperclip", "~> 5.0.0"
 gem 'simple_form'
+gem 'acts_as_votable'
 # Use sqlite3 as the database for Active Record
 group :development do
   gem 'sqlite3'

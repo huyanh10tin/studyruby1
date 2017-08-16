@@ -1,4 +1,7 @@
 class User < ApplicationRecord
+  acts_as_voter
+  has_many :notifications,foreign_key: :recipient_id
+
   has_many :comments, dependent: :destroy
   has_many :posts,dependent: :destroy
   has_many :microposts, dependent: :destroy
@@ -22,9 +25,10 @@ class User < ApplicationRecord
             uniqueness: {case_sensitive: false}
   has_secure_password
   validates :password, presence: true, length: {minimum: 6}, allow_nil: true
-  validates :username, presence:true,length:{minimum: 3}
+  validates :username, presence: true,length: {minimum: 3}
   #return hash digest of the given string
-
+  has_attached_file :avatar, styles: { medium: '152x152#' }
+  validates_attachment_content_type :avatar, content_type: /\Aimage\/.*\Z/
   def User.digest(string)
     cost = ActiveModel::SecurePassword.min_cost ? BCrypt::Engine::MIN_COST :
                BCrypt::Engine.cost

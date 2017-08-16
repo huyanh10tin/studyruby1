@@ -12,11 +12,15 @@
       <%= link_to (image_tag post.image.url(:medium), class:'img-responsive'), post_path(post) %>
     </div>
     <div class="post-bottom">
+      <%= render 'posts/likes', post: post %>
       <div class="caption">
         <div class="user-name">
-          <%= link_to post.user.name,user_path(post.user)%>
+          <%= link_to post.user.name,profile_path(post.user.username) %>
         </div>
-        <span class="label label-info">caption:</span><span style="color: black"><%= post.caption %></span>
+        <span class="label label-info">caption:</span><span style="color: black">
+        <%= linked_users post.caption %>
+
+      </span>
       </div>
       <div class="comments" id="comments_<%= post.id %>">
         <% if post.comments.any? %>
@@ -31,8 +35,10 @@
 
     </div>
     <div class="comment-like-form row">
-      <div class="like-button col-sm-1 col-xs-1">
-        <span class="glyphicon glyphicon-heart-empty"></span>
+      <div class="col-sm-1 like-button like_heart_only">
+
+        <%= link_to '', like_or_unlike_path(post), remote: true, id: "like_#{post.id}", class: "glyphicon #{liked_post post}" %>
+
       </div>
       <div class="comment-form col-sm-11 col-xs-11">
         <%= form_for([post, post.comments.build], remote: true) do |f| %>
