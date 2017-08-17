@@ -1,11 +1,23 @@
 <div class="posts-wrapper">
   <div class="post">
     <div class="post-head">
-      <div class="thumb-img"></div>
-      <div class="user-name">
-        <%= post.user.name %>
-        <span class="badge"><%= time_ago_in_words(post.created_at) %></span>
+      <div class="row">
+        <div class="col-md-3">
+          <div class="thumb-img"></div>
+          <div class="user-name">
+            <%= post.user.name %>
+            <span class="badge"><%= time_ago_in_words(post.created_at) %></span>
+          </div>
+        </div>
+        <div class="col-md-push-7 col-md-2">
+
+            <%= link_to '', save_or_unsave_path(post), remote: true, id: "save_#{post.id}", class: "glyphicon #{saved_post post}" %>
+
+
+
+        </div>
       </div>
+
 
     </div>
     <div class="image center-block">

@@ -1,8 +1,23 @@
 module PostsHelper
+  #check saved post
+  def save_or_unsave_path(post)
+    if current_user.saved? post
+      unsave_post_path(post.id)
+    else
+      save_post_path(post.id)
+    end
+  end
+  def saved_post post
+    return 'glyphicon-star' if current_user.saved? post
+    'glyphicon-star-empty'
+  end
+
+  #check liked post
   def liked_post(post)
     return 'glyphicon-heart' if current_user.voted_for? post
     'glyphicon-heart-empty'
   end
+
   def like_or_unlike_path(post)
     if current_user.voted_for? post
       unlike_post_path(post.id)
@@ -34,7 +49,7 @@ module PostsHelper
   end
   def linked_users(caption)
     caption.gsub /@([\w]+)/ do |match|
-      link_to match,user_path($1)
+      link_to match,profile_path($1)
     end.html_safe
   end
   private

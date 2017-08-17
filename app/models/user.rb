@@ -1,7 +1,13 @@
 class User < ApplicationRecord
   acts_as_voter
-  has_many :notifications,foreign_key: :recipient_id
+  has_many :saves,dependent: :destroy
+  has_many :chatroom_users
+  has_many :chatrooms,through: :chatroom_users
+  has_many :messages
 
+
+  has_many :events,dependent: :destroy
+  has_many :notifications,foreign_key: :recipient_id
   has_many :comments, dependent: :destroy
   has_many :posts,dependent: :destroy
   has_many :microposts, dependent: :destroy
@@ -94,12 +100,21 @@ class User < ApplicationRecord
   def following? other_user
     following.include? other_user
   end
+
+
+  def saved? post
+    if Save.where("user_id = ? AND post_id = ?",id,post.id).count > 0
+      return true
+    end
+    return false
+  end
   # Defines a proto-feed.
   # See "Following users" for the full implementation.
   # def feed
   #   Micropost.where("user_id = ?",id)
   # end
   private
+
   def downcase_email
     self.email = email.downcase
   end

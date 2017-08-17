@@ -14,7 +14,10 @@
 //= require jquery.atwho
 //= require bootstrap-sprockets
 //= require loadMoreComments
-//= require posts.coffee
+//= require posts
+//= require moment
+//= require fullcalendar
+//= require full_calender
 //= require rails-ujs
 //= require notifications.js
 //= require turbolinks
@@ -25,10 +28,15 @@
 $('document').ready(function() {
     setTimeout(function() {
         $('.alert').hide();
+
     }, 3000);
 
 
 });
+$(document).on('turbolinks:load', function() {
+    $('#calendar').fullCalendar({});
+});
+
 // var preview = $(".upload-preview img");
 //
 // $(".file").change(function(event){

@@ -1,7 +1,15 @@
 class PostsController < ApplicationController
-	before_action :set_post,only: [:edit,:show,:update,:destroy,:like,:unlike]
+	before_action :set_post,only: [:edit,:show,:update,:destroy,:like,:unlike,:save,:unsave]
 	before_action :logged_in_user, only: [:create, :destroy,:new]
 	before_action :owned_post, only: [:edit, :update, :destroy]
+	def save
+		Save.create(post_id:@post.id,user_id:current_user.id)
+	end
+	def unsave
+		if @save = Save.where("user_id = ? AND post_id = ?",current_user.id,@post.id)
+			@save.destroy_all
+		end
+	end
 	def index
 		@posts = Post.all.order('created_at DESC').page(params[:page]).per_page(3)
 		# @posts = Post.all.order('created_at DESC').paginate(page: params[:page])
@@ -30,6 +38,8 @@ class PostsController < ApplicationController
 	def destroy
 
 		@post.destroy
+		flash[:success] = "Your post has been deleted!"
+
 		redirect_to posts_path
 	end
 	def edit

@@ -3,9 +3,16 @@ class ProfilesController < ApplicationController
   before_action :owned_profile, only: [:edit, :update]
   # before_action :find_user
   def show
-
+    if User.find_by(username: params[:username])
       @posts = User.find_by(username: params[:username]).posts.order('created_at DESC')
       @user = User.find_by(username: params[:username])
+
+    else
+      flash[:alert] = 'Not have that user!'
+      redirect_to posts_path
+    end
+
+
   end
   def edit
     @user = User.find_by(username: params[:username])

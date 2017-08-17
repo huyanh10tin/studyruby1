@@ -1,6 +1,9 @@
 Rails.application.routes.draw do
 
 
+  resources :chatrooms do
+    resource :chatroom_users
+  end
   mount RailsAdmin::Engine => '/admin', as: 'rails_admin'
   devise_for :users
   # get ':username', to: 'profiles#show', as: :profile
@@ -22,10 +25,13 @@ Rails.application.routes.draw do
   post '/login', to: 'sessions#create'
   delete '/logout', to: 'sessions#destroy'
   resources :users do
+
     member do
       get :following, :followers
     end
+
   end
+  resources :events
   resources :notifications do
     collection do
       post :mark_as_read
@@ -37,6 +43,12 @@ Rails.application.routes.draw do
   resources :relationships, only: [:create, :destroy]
   resources :posts do
     resources :comments
+    member do
+      get 'save'
+    end
+    member do
+      get 'unsave'
+    end
     member do
       get 'like'
     end
