@@ -1,14 +1,12 @@
 Rails.application.routes.draw do
-
-
   resources :chatrooms do
     resource :chatroom_users
   end
   mount RailsAdmin::Engine => '/admin', as: 'rails_admin'
   devise_for :users
   # get ':username', to: 'profiles#show', as: :profile
-  get '/profiles/:username',to:'profiles#show',as: :profile
-  get '/profiles/:username/edit',to:'profiles#edit',as: :profile_edit
+  get '/profiles/:username', to: 'profiles#show', as: :profile
+  get '/profiles/:username/edit', to: 'profiles#edit', as: :profile_edit
   patch '/profiles/:username/edit', to: 'profiles#update', as: :profile_update
   get 'password_resets/new'
 
@@ -38,8 +36,8 @@ Rails.application.routes.draw do
     end
   end
   resources :account_activations, only: [:edit]
-  resources :password_resets,only: [:new,:create,:edit,:update]
-  resources :microposts,only: [:create,:destroy]
+  resources :password_resets, only: [:new, :create, :edit, :update]
+  resources :microposts, only: [:create, :destroy]
   resources :relationships, only: [:create, :destroy]
   resources :posts do
     resources :comments

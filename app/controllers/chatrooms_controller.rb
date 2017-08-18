@@ -1,5 +1,5 @@
 class ChatroomsController < ApplicationController
-  before_action :logged_in_user,only: [:index,:show, :edit, :update, :destroy]
+  before_action :logged_in_user, only: [:index, :show, :edit, :update, :destroy]
   before_action :set_chatroom, only: [:show, :edit, :update, :destroy]
 
   # GET /chatrooms
@@ -29,11 +29,11 @@ class ChatroomsController < ApplicationController
 
     respond_to do |format|
       if @chatroom.save
-        format.html { redirect_to chatrooms_path, notice: 'Chatroom was successfully created.' }
-        format.json { render :show, status: :created, location: @chatroom }
+        format.html {redirect_to chatrooms_path, notice: 'Chatroom was successfully created.'}
+        format.json {render :show, status: :created, location: @chatroom}
       else
-        format.html { render :new }
-        format.json { render json: @chatroom.errors, status: :unprocessable_entity }
+        format.html {render :new}
+        format.json {render json: @chatroom.errors, status: :unprocessable_entity}
       end
     end
   end
@@ -43,11 +43,11 @@ class ChatroomsController < ApplicationController
   def update
     respond_to do |format|
       if @chatroom.update(chatroom_params)
-        format.html { redirect_to @chatroom, notice: 'Chatroom was successfully updated.' }
+        format.html {redirect_to @chatroom, notice: 'Chatroom was successfully updated.'}
         format.json { render :show, status: :ok, location: @chatroom }
       else
-        format.html { render :edit }
-        format.json { render json: @chatroom.errors, status: :unprocessable_entity }
+        format.html {render :edit}
+        format.json {render json: @chatroom.errors, status: :unprocessable_entity}
       end
     end
   end
@@ -57,8 +57,8 @@ class ChatroomsController < ApplicationController
   def destroy
     @chatroom.destroy
     respond_to do |format|
-      format.html { redirect_to chatrooms_url, notice: 'Chatroom was successfully destroyed.' }
-      format.json { head :no_content }
+      format.html {redirect_to chatrooms_url, notice: 'Chatroom was successfully destroyed.'}
+      format.json {head :no_content}
     end
   end
 

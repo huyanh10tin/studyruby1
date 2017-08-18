@@ -17,10 +17,10 @@ class CommentsController < ApplicationController
 
     if @comment.save
       (@post.users.uniq - [current_user]).each do |user|
-        Notification.create(recipient:user,actor:current_user,action:"commented",notifiable: @comment)
+        Notification.create(recipient:user, actor:current_user, action:"commented", notifiable: @comment)
       end
       respond_to do |format|
-        format.html { redirect_to posts_path }
+        format.html {redirect_to posts_path}
         format.js
       end
     else
@@ -33,7 +33,7 @@ class CommentsController < ApplicationController
 
     @comment.destroy
     respond_to do |format|
-      format.html { redirect_to posts_path }
+      format.html {redirect_to posts_path}
       format.js
     end
     # flash[:success] = "Comment deleted :("

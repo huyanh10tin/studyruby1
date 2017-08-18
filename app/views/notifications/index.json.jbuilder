@@ -16,9 +16,9 @@ json.array! @notifications do |notification|
     end
   end
   if notification.notifiable.is_a?(Post)
-    json.url post_path(notification.notifiable,anchor: dom_id(notification.notifiable))
+    json.url post_path(notification.notifiable, anchor: dom_id(notification.notifiable))
   else
-    json.url post_path(notification.notifiable.post,anchor: dom_id(notification.notifiable))
+    json.url post_path(notification.notifiable.post, anchor: dom_id(notification.notifiable))
   end
 
 end

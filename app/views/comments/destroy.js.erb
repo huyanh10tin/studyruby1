@@ -1,5 +1,4 @@
-
 $('#post<%= @post.id %>comment<%=@comment.id%>').parent().remove();
 var x = <%= @post.comments.count%>;
 
-$('#comments-paginator-<%= @post.id %> a').text("view all "+x+" comments");
+$('#comments-paginator-<%= @post.id %> a').text("view all " + x + " comments");

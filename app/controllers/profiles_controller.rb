@@ -1,5 +1,5 @@
 class ProfilesController < ApplicationController
-  before_action :logged_in_user,only:[:edit,:update]
+  before_action :logged_in_user, only: [:edit, :update]
   before_action :owned_profile, only: [:edit, :update]
   # before_action :find_user
   def show
@@ -25,7 +25,7 @@ class ProfilesController < ApplicationController
     else
       @user.errors.full_messages
       flash[:error] = @user.errors.full_messages
-      render :edit
+      render 'edit'
     end
   end
   private
