@@ -27,7 +27,9 @@ Rails.application.routes.draw do
     member do
       get :following, :followers
     end
-
+    member do
+      get 'saved'
+    end
   end
   resources :events
   resources :notifications do

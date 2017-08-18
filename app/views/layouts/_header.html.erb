@@ -13,7 +13,7 @@
               <a class="dropdown-toggle nav-link" type="button" data-behavior='notifications-link' id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
                 <%= fa_icon "bell"%><span data-behavior="unread-count"></span>
               </a>
-              <ul class="dropdown-menu" aria-labelledby="dropdonwMenu1" data-behavior="notification-items">
+              <ul class="dropdown-menu noti" aria-labelledby="dropdonwMenu1" data-behavior="notification-items">
               </ul>
             </li>
             <li><%= link_to "New Post", new_post_path %></li>
@@ -26,6 +26,7 @@
                 <li><%= link_to "History", current_user %></li>
                 <li><%= link_to "Settings", edit_user_path(current_user) %></li>
                 <li><%= link_to "Profile", profile_path(current_user.username) %></li>
+                <li><%= link_to "SavedPost",saved_user_path(current_user)%></li>
                 <li class="divider"></li>
                 <li>
                   <%= link_to "Log out", logout_path, method: "delete" %>

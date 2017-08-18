@@ -4,11 +4,11 @@ class PostsController < ApplicationController
   before_action :owned_post, only: [:edit, :update, :destroy]
 
   def save
-    Save.create(post_id: @post.id, user_id: current_user.id)
+    SavePost.create(post_id: @post.id, user_id: current_user.id)
   end
 
   def unsave
-    if @save = Save.where("user_id = ? AND post_id = ?", current_user.id, @post.id)
+    if @save = SavePost.where("user_id = ? AND post_id = ?", current_user.id, @post.id)
       @save.destroy_all
     end
   end

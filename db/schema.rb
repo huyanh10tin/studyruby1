@@ -101,13 +101,13 @@ ActiveRecord::Schema.define(version: 20170817132239) do
     t.index ["follower_id"], name: "index_relationships_on_follower_id"
   end
 
-  create_table "saves", force: :cascade do |t|
+  create_table "save_posts", force: :cascade do |t|
     t.integer "post_id"
     t.integer "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["post_id"], name: "index_saves_on_post_id"
-    t.index ["user_id"], name: "index_saves_on_user_id"
+    t.index ["post_id"], name: "index_save_posts_on_post_id"
+    t.index ["user_id"], name: "index_save_posts_on_user_id"
   end
 
   create_table "users", force: :cascade do |t|

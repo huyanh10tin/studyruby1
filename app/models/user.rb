@@ -1,6 +1,6 @@
 class User < ApplicationRecord
   acts_as_voter
-  has_many :saves, dependent: :destroy
+  has_many :save_posts, dependent: :destroy
   has_many :chatroom_users
   has_many :chatrooms, through: :chatroom_users
   has_many :messages
@@ -112,7 +112,7 @@ class User < ApplicationRecord
 
 
   def saved? post
-    if Save.where("user_id = ? AND post_id = ?", id, post.id).count > 0
+    if SavePost.where("user_id = ? AND post_id = ?", id, post.id).count > 0
       return true
     end
     return false

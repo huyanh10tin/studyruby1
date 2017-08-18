@@ -1,4 +1,4 @@
-<li><%= link_to post_path(notification.notifiable.post,anchor: dom_id(notification.notifiable)), class: "dropdown-item #{"unread" unless notification.read_at?}" do %>
+<li><%= link_to post_path(notification.notifiable, anchor: dom_id(notification.notifiable)),class: "dropdown-item #{"unread" unless notification.read_at?}" do %>
       <span style="font-weight: bold"><%= notification.actor.username %>
       <%= notification.action %>
     a <%= notification.notifiable_type.underscore.humanize.downcase %></span>

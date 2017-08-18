@@ -15,6 +15,15 @@
  *= require_tree .
  *= require_self
  */
+.noti{
+  background: linear-gradient(to right, #e55d87, #5fc3e4);
+}
+.noti li a:hover{
+  background-color: yellow;
+}
+.unread{
+  border-left: 3px solid red;
+}
 .custom_huyanh{
   background-color: black;
   li a{

@@ -1,5 +1,13 @@
 module PostsHelper
-  #check saved post
+  # save or unsave
+  def text_save(post)
+    if current_user.saved? post
+      "unsave"
+    else
+      "save"
+    end
+  end
+  # check saved post
   def save_or_unsave_path(post)
     if current_user.saved? post
       unsave_post_path(post.id)

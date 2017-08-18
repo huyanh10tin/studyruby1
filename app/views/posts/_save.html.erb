@@ -1,1 +1,1 @@
-<%= link_to '', save_or_unsave_path(post), remote: true, id: "save_#{post.id}", class: "glyphicon #{saved_post post}" %>
+<%= link_to '', save_or_unsave_path(post), remote: true, id: "save_#{post.id}", class: "glyphicon #{saved_post post}",data: { toggle: 'tooltip',title: text_save(post)} %>

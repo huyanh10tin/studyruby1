@@ -26,6 +26,7 @@
 
 
 $('document').ready(function() {
+
     setTimeout(function() {
         $('.alert').hide();
 
@@ -34,6 +35,7 @@ $('document').ready(function() {
 
 });
 $(document).on('turbolinks:load', function() {
+    $('[data-toggle="tooltip"]').tooltip();
     $('#calendar').fullCalendar({});
 });
 

@@ -40,9 +40,17 @@ document.addEventListener("turbolinks:load", function() {
             var items;
             // console.log(data);
             items = $.map(data, function(notification) {
-                return "<li ><a style='color: black;font-weight: bold' href='" + notification.url + "'>" + notification.actor + " " + notification.notifiable.type + " on your post</a></li>";
+                // return "<li ><a style='color: black;font-weight: bold' href='" + notification.url + "'>" + notification.actor + " " + notification.notifiable.type + " on your post</a></li>";
+                return notification.template
             });
-            $("[data-behavior='unread-count']").text(items.length);
+            var unread_count;
+            unread_count = 0;
+            $.each(data, function(i, notification) {
+              if (notification.unread) {
+                return unread_count += 1;
+              }
+            });
+            $("[data-behavior='unread-count']").text(unread_count);
             return $("[data-behavior='notification-items']").html(items);
         };
         return Notifications;

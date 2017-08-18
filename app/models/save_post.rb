@@ -1,4 +1,4 @@
-class Save < ApplicationRecord
+class SavePost < ApplicationRecord
   belongs_to :post
   belongs_to :user
 end

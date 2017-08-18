@@ -1,6 +1,6 @@
 class Post < ApplicationRecord
   acts_as_votable
-  has_many :saves
+  has_many :save_posts
   has_many :comments, dependent: :destroy
   belongs_to :user
   has_many :users, through: :comments
