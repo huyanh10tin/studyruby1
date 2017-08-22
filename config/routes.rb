@@ -43,7 +43,7 @@ Rails.application.routes.draw do
   resources :relationships, only: [:create, :destroy]
   resources :activities, only: [:index, :create]
   resources :posts do
-    collection { post :search, to: 'posts#index' }
+    
     resources :comments
     member do
       get 'save'

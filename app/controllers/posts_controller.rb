@@ -14,15 +14,13 @@ class PostsController < ApplicationController
   end
 
   def index
-    @search = Post.search(params[:q])
-    @posts = @search.result.page(params[:page]).per_page(5)
-    # @posts = Post.all.order('created_at DESC').page(params[:page]).per_page(3)
+    @posts = Post.all.order('created_at DESC').page(params[:page]).per_page(3)
     # @posts = Post.all.order('created_at DESC').paginate(page: params[:page])
     respond_to do |format|
       format.html
       format.js
 
-      format.json {render json: @projects}
+      format.json { render json: @projects }
     end
   end
 
