@@ -15,6 +15,16 @@
  *= require_tree .
  *= require_self
  */
+.activity{
+  border-bottom: solid 1px #CCC;
+  padding: 16px, 0;
+  em{
+    color: #777;
+    font-size: 12px;
+    padding-left: 5px
+  }
+}
+
 .noti{
   background: linear-gradient(to right, #e55d87, #5fc3e4);
 }

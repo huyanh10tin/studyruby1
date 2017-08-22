@@ -1,8 +1,10 @@
 <h1>All Saved Post</h1>
+
 <% if @saved %>
 	<% @saved.each do |save| %>
 		<%= render partial:"posts/post",locals:{post:save.post}%>
 	<% end %>
 <% else %>
-	<h2>There no saved post</h2>
+	<h1> There no saved post </h1>
+
 <% end %>

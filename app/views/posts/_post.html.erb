@@ -3,8 +3,13 @@
     <div class="post-head">
       <div class="row">
         <div class="col-md-3">
-          <div class="thumb-img"></div>
           <div class="user-name">
+            <% if post.user.avatar_file_size %>
+            <%= image_tag post.user.avatar,size:20%>
+
+            <% else %>
+            <%= image_tag 'default-avatar.jpg',size:20%>
+            <% end %>
             <%= post.user.name %>
             <span class="badge"><%= time_ago_in_words(post.created_at) %></span>
           </div>
@@ -46,7 +51,7 @@
       </div>
       <div class="comment-form col-sm-11 col-xs-11">
         <%= form_for([post, post.comments.build], remote: true) do |f| %>
-            <%= f.text_field :content, placeholder: 'Add a comment...', class: "form-control comment_content", id: "comment_content_#{post.id}" %>
+            <%= f.text_field :content, placeholder: 'Add a comment...', class: "form-control comment_content", id: "comment_content_#{post.id}",data:{behavior:"autocomplete"} %>
         <% end %>
       </div>
     </div>

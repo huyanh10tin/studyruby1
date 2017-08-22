@@ -41,7 +41,9 @@ Rails.application.routes.draw do
   resources :password_resets, only: [:new, :create, :edit, :update]
   resources :microposts, only: [:create, :destroy]
   resources :relationships, only: [:create, :destroy]
+  resources :activities, only: [:index, :create]
   resources :posts do
+    collection { post :search, to: 'posts#index' }
     resources :comments
     member do
       get 'save'

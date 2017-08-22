@@ -4,8 +4,6 @@ class User < ApplicationRecord
   has_many :chatroom_users
   has_many :chatrooms, through: :chatroom_users
   has_many :messages
-
-
   has_many :events, dependent: :destroy
   has_many :notifications, foreign_key: :recipient_id
   has_many :comments, dependent: :destroy
@@ -32,7 +30,7 @@ class User < ApplicationRecord
   has_secure_password
   validates :password, presence: true, length: {minimum: 6}, allow_nil: true
   validates :username, presence: true, length: {minimum: 3}
-  #return hash digest of the given string
+  # return hash digest of the given string
   has_attached_file :avatar, styles: {medium: '152x152#'}
   validates_attachment_content_type :avatar, content_type: /\Aimage\/.*\Z/
 
@@ -42,7 +40,7 @@ class User < ApplicationRecord
     BCrypt::Password.create(string, cost: cost)
   end
 
-  #return a random token
+  # return a random token
   def User.new_token
     SecureRandom.urlsafe_base64
   end
@@ -52,7 +50,7 @@ class User < ApplicationRecord
     update_attribute(:remember_digest, User.digest(remember_token))
   end
 
-  #check if the token pass in has hash the same like the attribute activation_digest
+  # check if the token pass in has hash the same like the attribute activation_digest
   def authenticated?(attribute, token)
     digest = self.send("#{attribute}_digest")
     return false if digest.nil?
@@ -87,7 +85,7 @@ class User < ApplicationRecord
     update_attribute(:reset_sent_at, Time.zone.now)
   end
 
-  #send reset email
+  # send reset email
   def send_password_reset_email
     UserMailer.password_reset(self).deliver_now
   end
@@ -96,12 +94,12 @@ class User < ApplicationRecord
     reset_sent_at < 2.hours.ago
   end
 
-  #follow
+  # follow
   def follow other_user
     active_relationships.create(followed_id: other_user.id)
   end
 
-  #unfollow
+  # unfollow
   def unfollow other_user
     following.delete other_user
   end
@@ -121,7 +119,7 @@ class User < ApplicationRecord
   # Defines a proto-feed.
   # See "Following users" for the full implementation.
   # def feed
-  #   Micropost.where("user_id = ?",id)
+  # Micropost.where("user_id = ?",id)
   # end
   private
 

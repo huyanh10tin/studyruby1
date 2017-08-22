@@ -1,0 +1,23 @@
+<table class="table table-bordered" id="myTable" class="table" cellspacing="0" width="100%">
+	 <thead class="thead-inverse">
+      <tr>
+        <th>UserName</th>
+        <th>Object</th>
+        <th>Action</th>
+        <th>Time</th>
+      </tr>
+    </thead>
+    <tbody>
+		<% @activities.each do |activity|%>
+		<%= render partial:"activity",locals:{activity:activity}%>
+		<% end %>
+	 </tbody>
+        <tfoot>
+            <tr>
+                  <th>UserName</th>
+                  <th>Object</th>
+                  <th>Action</th>
+                  <th>Time</th>
+            </tr>
+        </tfoot>
+</table>

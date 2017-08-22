@@ -14,7 +14,9 @@ class PostsController < ApplicationController
   end
 
   def index
-    @posts = Post.all.order('created_at DESC').page(params[:page]).per_page(3)
+    @search = Post.search(params[:q])
+    @posts = @search.result.page(params[:page]).per_page(5)
+    # @posts = Post.all.order('created_at DESC').page(params[:page]).per_page(3)
     # @posts = Post.all.order('created_at DESC').paginate(page: params[:page])
     respond_to do |format|
       format.html
@@ -29,7 +31,9 @@ class PostsController < ApplicationController
   end
 
   def create
-    if current_user.posts.create(post_params)
+    @post = current_user.posts.create(post_params)
+    if @post.save
+      @post.create_activity :create, owner: current_user
       flash[:success] = "Your post has been created!"
       redirect_to posts_path
     else
@@ -43,8 +47,9 @@ class PostsController < ApplicationController
   end
 
   def destroy
-
+    @post.create_activity :destroy, owner: current_user
     @post.destroy
+    
     flash[:success] = "Your post has been deleted!"
 
     redirect_to posts_path

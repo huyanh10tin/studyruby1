@@ -6,4 +6,8 @@ module UsersHelper
     image_tag(gravatar_url, alt: user.name, class: "gravatar")
 
   end
+  def get_activity_trackable_content activity
+    trackable_type = activity.trackable_type
+    @trackable = trackable_type.downcase
+  end
 end

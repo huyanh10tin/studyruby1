@@ -1,4 +1,6 @@
 class Micropost < ApplicationRecord
+  include PublicActivity::Model
+  tracked owner: -> (controller, model){controller && controller.current_user}
   belongs_to :user
   default_scope -> {order(created_at: :desc)}
   mount_uploader :picture, PictureUploader

@@ -1,0 +1,6 @@
+<tr>
+	    <td><b><%= activity.owner.name if activity.owner %></b></td>
+	    <td><%= get_activity_trackable_content activity %></td>
+	    <td><%= activity.key %></td>
+	    <td><em><%= time_ago_in_words activity.created_at %></em></td>
+</tr>
